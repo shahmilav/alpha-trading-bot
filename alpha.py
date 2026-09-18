@@ -33,9 +33,6 @@ BASE = os.environ.get("STOCKSIM_BASE", "https://stocksimulator.xyz/api/bot")
 NY = ZoneInfo("America/New_York")
 STATE_PATH = Path(__file__).with_name("alpha_state.json")
 
-# User-provided bot key. STOCKSIM_ALPHA_API_KEY overrides this if set.
-DEFAULT_API_KEY = "FT5WQn5SoDKvmitoJMmAVIwMQgOrLrSx"
-
 # Diverse, high-convexity universe. Sleeve tags cap accidental concentration
 # in names that all move as one trade (TQQQ + NVDA + AMD is not diversification).
 UNIVERSE: dict[str, str] = {
@@ -903,9 +900,9 @@ class AlphaEngine:
 
 def main() -> int:
     load_dotenv(Path(__file__).with_name(".env"))
-    api_key = (os.environ.get("STOCKSIM_ALPHA_API_KEY") or DEFAULT_API_KEY).strip()
+    api_key = os.environ.get("STOCKSIM_ALPHA_API_KEY", "").strip()
     if not api_key:
-        print("Set STOCKSIM_ALPHA_API_KEY or DEFAULT_API_KEY.", file=sys.stderr)
+        print("Set STOCKSIM_ALPHA_API_KEY in .env or the environment.", file=sys.stderr)
         return 1
 
     api = StockSim(api_key)

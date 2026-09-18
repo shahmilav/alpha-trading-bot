@@ -6,15 +6,13 @@ A high-reward trading bot for [Stock Simulator](https://stocksimulator.xyz). It 
 python alpha.py
 ```
 
-Trades go through `https://stocksimulator.xyz/api/bot`. Set `STOCKSIM_ALPHA_API_KEY` (or put it in a `.env` next to this script) to the bot key from the Games menu. Prices, cash, and NAV are integer **cents**. The public API is capped at 200 requests per minute per key; Alpha stays under 170.
+Trades go through `https://stocksimulator.xyz/api/bot`.
 
----
 
-## Overview
 
-Alpha is **cross-sectional momentum**, not a dip-buy / take-profit loop.
+Alpha is **cross-sectional momentum** bot.
 
-Each tick it quotes a fixed universe, scores every name relative to the others, classifies the market as `RISK_ON`, `MIXED`, or `PANIC`, and builds a **target book** — a handful of names with weights. Then it trades the difference: sells first so cash is free, then buys, honouring stops before anything else.
+Each tick it quotes a fixed universe, scores stocks relative to the others, classifies the market as `RISK_ON`, `MIXED`, or `PANIC`, and builds a **target book** — a handful of names with weights. Then it trades the difference: sells first so cash is free, then buys, honouring stops before anything else.
 
 That is the whole strategy. The rest is how it decides who is a leader, how hard to press, and when to get out.
 
