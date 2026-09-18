@@ -1,0 +1,22 @@
+# Secrets
+.env
+
+# Runtime state
+alpha_state.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtualenv (this repo's venv lives at the project root)
+bin/
+lib/
+include/
+pyvenv.cfg
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
